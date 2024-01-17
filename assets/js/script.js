@@ -39,11 +39,15 @@ $("#search-button").on("click", function (e) {
         console.log(cityName);
         console.log(currentWeather);
         
+      // save the city to be displayed
+      saveCity(citySearch);
+
       displayCurrentWeather(cityName, currentWeather);
       displayForecast(data);
     })    
   });
   
+
   // function to display the weather for today
   function displayCurrentWeather(cityName, currentWeather) {
     const todaySection = $("#today");
@@ -104,3 +108,30 @@ $("#search-button").on("click", function (e) {
       forecastDiv.appendTo(forecastSection);
     }
   }
+
+  // function to save the event to localStorage
+  function saveCity(city) {
+    const savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+
+    savedCities.push(city);
+
+    localStorage.setItem("savedCities", JSON.stringify(savedCities));
+};
+
+function displaySavedCities() {
+  const historyDiv = $("#history");
+  historyDiv.empty();
+
+  const savedCities = JSON.parse(localStorage.getItem("savedCities")) || [];
+
+  savedCities.forEach((city) => {
+    const listItemButton = $("<button>").addClass("list-group-item list-group-item-button").text(city).on("click", function() {
+      $("#search-input").val(city);
+      displayCurrentWeather(city);
+    });
+    historyDiv.append(listItemButton);
+  });
+}
+
+// call the function to display the cities searched when the page loads
+displaySavedCities();
