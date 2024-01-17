@@ -1758,7 +1758,15 @@ label form [type='radio'] {
   margin: 0.5rem;
   width: 100%;
   background-color: #5098e6;
-  color: #d9e9e8;
+  color: #000000;
+}
+
+.list-group-item-button {
+  /* text-align: inherit; */
+  margin: 0.5rem;
+  width: 100%;
+  background-color: #5098e6;
+  color: #000000;
 }
 
 .weather-search {

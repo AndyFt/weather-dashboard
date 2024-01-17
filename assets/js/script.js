@@ -1,14 +1,10 @@
 
 const APIKey = "29e7ce4405541eaa9c7ae175e326c63d";
 
-$("#search-button").on("click", function (e) {
-  e.preventDefault();
-  
-  // get the city the user added
-  const citySearch = $("#search-input").val().trim();
+function handleCitySearch (city) {
 
   // find the info to get lat and lon
-  const cityQueryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${citySearch}&units=metric&appid=${APIKey}`;
+  const cityQueryURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${APIKey}`;
 
   fetch(cityQueryURL)
     .then(function (response){
@@ -40,13 +36,22 @@ $("#search-button").on("click", function (e) {
         console.log(currentWeather);
         
       // save the city to be displayed
-      saveCity(citySearch);
+      saveCity(city);
 
       displayCurrentWeather(cityName, currentWeather);
       displayForecast(data);
     })    
-  });
+  };
   
+  // create an event handler for the search button
+  $("#search-button").on("click", function (e) {
+    e.preventDefault();
+    
+    // get the city the user added
+    const citySearch = $("#search-input").val().trim();
+  
+    handleCitySearch(citySearch);
+  });
 
   // function to display the weather for today
   function displayCurrentWeather(cityName, currentWeather) {
@@ -127,7 +132,7 @@ function displaySavedCities() {
   savedCities.forEach((city) => {
     const listItemButton = $("<button>").addClass("list-group-item list-group-item-button").text(city).on("click", function() {
       $("#search-input").val(city);
-      displayCurrentWeather(city);
+      handleCitySearch(city);
     });
     historyDiv.append(listItemButton);
   });
