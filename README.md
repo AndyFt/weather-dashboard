@@ -37,6 +37,6 @@ The user can choose a city to check the weather for today and the forecast for t
 MIT license
 
 ## Badges
-![badmath](https://img.shields.io/badge/HTML-62.2-blue)
-![badmath](https://img.shields.io/badge/JavaScript-21.1-orange)
-![badmath](https://img.shields.io/badge/CSS-16.7-green)
+![badmath](https://img.shields.io/badge/HTML-5.9-blue)
+![badmath](https://img.shields.io/badge/JavaScript-14.5-orange)
+![badmath](https://img.shields.io/badge/CSS-79.6-green)
